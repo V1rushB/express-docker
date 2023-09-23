@@ -30,7 +30,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/v1rushb/express-docker:${{steps.image_verison.outputs.gitsha}} #express-docker is the name of the repo. your repo name
+      run: docker build . --file Dockerfile --tag ghcr.io/v1rushb/express-docker:${{steps.image_version.outputs.gitsha}} #express-docker is the name of the repo. your repo name
 
     - name: Publish docker image
       run: docker push ghcr.io/v1rushb/express-docker:${{steps.image_verison.outputs.gitsha}}
