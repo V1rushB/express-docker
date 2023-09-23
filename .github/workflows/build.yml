@@ -34,3 +34,11 @@ jobs:
 
     - name: Publish docker image
       run: docker push ghcr.io/v1rushb/express-docker:${{steps.image_version.outputs.gitsha}}
+    - name: configure docker host
+      uses: v1rushb/configure-docker-host@v1
+      with:
+        host: 3.8.2.88
+        user: github
+        ssh-private-key:  ${{ secrets.DEPLOYMENT_KEY }}
+    - name: deploy
+      run: docker compose -f docker-compose-prod.yml up -d
